@@ -44,6 +44,10 @@ h1 {
     font-size: 36px;
 }
 
+.photographer_section article p {
+    font-weight: bold;
+}
+
 .photographer_section article img {
     height: 200px;
     width: 200px;

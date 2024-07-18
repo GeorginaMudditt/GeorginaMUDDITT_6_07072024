@@ -1,1 +1,0 @@
-//Add JavaScript code linked to the photographer.html page
