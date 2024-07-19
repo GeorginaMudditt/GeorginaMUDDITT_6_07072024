@@ -28,7 +28,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 .photographer_section article {
@@ -37,18 +37,46 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-
-.photographer_section article h2 {
-    color: #D3573C;
-    font-size: 36px;
-}
-
-.photographer_section article p {
-    font-weight: bold;
+    font-weight: 400; 
+    overflow: hidden; /* Added this while trying to solve problem below */ 
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    
+}/* Two of these imgs are good as they are; most need to be zoomed in (e.g. Mimi). How can I do this, bearing in mind it's not something I want to apply to all photos and they don't have a class/id of their own in the HTML?? I have been palying around with thinsg like this, but no joy ...
+.photographer_section article:nth-of-type(1) img {
+    transform: scale(1.5);
+}*/
+
+.photographer_section h2 {
+    color: #bf5138;
+    font-size: 36px;
+    line-height: 46.87px;
+    margin:0;
 }
+
+.photographer_section h3 {
+    color: #901c1c;
+    font-size: 13px;
+    line-height: 16.93px;
+    margin:0;
+}
+
+.photographer_section h4 {
+    font-size: 10px;
+    line-height: 13.02px;
+    margin:0;
+}
+
+.photographer_section h5 {
+    font-size: 9px;
+    line-height: 11.72px;
+    margin: 0;
+    color: #757575;
+}
+
