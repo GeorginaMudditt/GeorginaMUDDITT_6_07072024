@@ -1,3 +1,5 @@
+// This function fetches the data from the JSON file. If an error occurs, it logs the error to the console.  
+
 import {photographerFactory} from '../factories/photographer.js'
 
 async function getPhotographers() {
@@ -18,6 +20,8 @@ async function getPhotographers() {
     }
 }
 
+// This function dynamically generates and displays HTML cards for each photographer
+
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
@@ -29,10 +33,10 @@ async function displayData(photographers) {
 };
 
 async function init() {
-    // Retreive photographer data
     const { photographers } = await getPhotographers();
     displayData(photographers);
 };
 
 init();
-    
+  
+// TODO: Dynamically create links  on the home page that lead to individual pages for each photographer, using their IDs to fetch and display the correct
