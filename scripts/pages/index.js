@@ -20,14 +20,14 @@ async function getPhotographers() {
     }
 }
 
-// This function dynamically generates and displays HTML cards for each photographer
+// This function generates and displays the cards for each photographer
 
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM(); // html card
+        const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
     });
 };
@@ -38,5 +38,6 @@ async function init() {
 };
 
 init();
+
+
   
-// TODO: Dynamically create links  on the home page that lead to individual pages for each photographer, using their IDs to fetch and display the correct

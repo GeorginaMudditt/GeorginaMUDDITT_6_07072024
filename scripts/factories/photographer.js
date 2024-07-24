@@ -36,8 +36,8 @@ export const photographerFactory = (data) => {
     return { name, picture, getUserCardDOM }
 }
 
-function extractPhotographerId() {
-    // parse the URL and extract the photographers' IDs
+// parsing the URL and extracting the photographers' IDs
+function extractPhotographerId() { 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id');
@@ -45,3 +45,36 @@ const photographerId = urlParams.get('id');
 return photographerId;
 }
 
+// I am struggling with the code below - trying to display the photographer's data on the photographer.html page. Error message from line 66 being logged. 
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchPhotographerData();
+  });
+  
+  function fetchPhotographerData() {
+    fetch('./data/photographers.json') // this path is correct, right? 
+      .then(response => response.json())
+      .then(data => {
+        const photographerId = extractPhotographerIdFromUrl();
+        const photographer = data.photographers.find(p => p.id === photographerId);
+        if (photographer) {
+          populatePhotographerHeader(photographer);
+        } else {
+          console.error('Photographer not found');
+        }
+      })
+      .catch(error => console.error('Error loading photographer data:', error));
+  }
+
+  function extractPhotographerIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return parseInt(urlParams.get('id'), 10);
+  }
+  
+  function populatePhotographerHeader(photographer) {
+    const photographHeaderDiv = document.querySelector('.photograph-header');
+  
+    const nameElement = document.createElement('h1');
+    nameElement.textContent = photographer.name;
+    photographHeaderDiv.appendChild(nameElement);
+  }
