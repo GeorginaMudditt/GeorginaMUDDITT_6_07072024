@@ -20,16 +20,24 @@
         <button class="contact_button" onclick="displayModal()">Contact me</button>
       </div>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" role="dialog" aria-labelledby="contactFormLabel">
 			<div class="modal">
 				<header>
-          <h2>Contact me</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="contactFormLabel">Contact me</h2>
+          <button onclick="closeModal()" aria-label="Close contact form">
+          <img src="assets/icons/close.svg" alt="Close" />
+          </button>
         </header>
-				<form>
+				<form aria-label="Contact form">
 					<div>
-						<label>First name</label>
-						<input />
+						<label for="firstName">First name</label>
+						<input id="firstName" name="firstName" type="text" placeholder="Jane"/>
+            <label for="lastName">Last name</label>
+						<input id="lastName" name="lastName" type="text" placeholder="Doe" />
+            <label for="email">Email</label>
+						<input id="email" name="email" type="email" placeholder="jane.doe@email.com" />
+            <label for="yourMessage">Your message</label>
+						<textarea id="yourMessage" name="yourMessage" type="text" placeholder="I would like to ask ..."></textarea>
 					</div>
           <button class="contact_button">Send</button>
 				</form>
