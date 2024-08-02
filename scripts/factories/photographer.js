@@ -5,7 +5,7 @@ export const photographerFactory = (data) => {
 
     function getUserCardDOM() {
         // creating elements
-        const article = document.createElement( 'article' ); 
+        const article = document.createElement('article'); 
         const img = document.createElement('img' );
         const h2 = document.createElement( 'h2' );
         const h3 = document.createElement('h3');
@@ -33,48 +33,34 @@ export const photographerFactory = (data) => {
 
         return link; 
     }
-    return { name, picture, getUserCardDOM }
-}
 
-// parsing the URL and extracting the photographers' IDs
-function extractPhotographerId() { 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const photographerId = urlParams.get('id');
+    function getPhotographerCard() {
+      // creating elements
+      const section = document.createElement('section');
+      const img = document.createElement('img');
+      const h1 = document.createElement('h1');
+      const h2 = document.createElement('h2');
+      const p = document.createElement('p');
+      const span = document.createElement('span');
 
-return photographerId;
-}
+      // populating elements
+      img.setAttribute("src", picture);
+      h1.textContent = name;
+      h2.textContent = `${city}, ${country}`;
+      p.textContent = tagline;
+      span.textContent = `$${price}/day`;
 
-// Please HELP with code below - I am completely stuck on this step
+      // ordering elements
+      section.appendChild(img);
+      section.appendChild(h1);
+      section.appendChild(h2);
+      section.appendChild(p);
+      section.appendChild(span);
 
-// fetching photographer data from the JSON file
-async function fetchPhotographerData() {
-  const response = await fetch('./data/photographers.json'); //this is the correct path, right?
-  const data = await response.json();
-  return data.photographers;
-}
-
-// displaying the photographer's data
-async function displayPhotographerData() {
-  const photographerId = extractPhotographerId();
-  const photographers = await fetchPhotographerData();
-  const photographer = photographers.find(p => p.id === photographerId);
-
-  if (photographer) {
-    const photographHeader = document.querySelector('.photograph-header');
-    const photographerName = document.createElement('h1');
-    photographerName.textContent = photographer.name;
-
-    const photographerPhoto = document.createElement('img');
-    photographerPhoto.src = photographer.portrait;
-    photographerPhoto.alt = photographer.name;
-
-    photographHeader.appendChild(photographerName);
-    photographHeader.appendChild(photographerPhoto);
-    } else {
-      console.error('Photographer not found');
+      return section;
     }
-}
 
-// calling the function to display the photographer's data when the page loads
-document.addEventListener('DOMContentLoaded', displayPhotographerData);
+    return { getUserCardDOM, getPhotographerCard };
+};
+
+
