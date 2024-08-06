@@ -35,32 +35,62 @@ export const photographerFactory = (data) => {
     }
 
     function getPhotographerCard() {
+      // selecting existing elements
+      const textContainer = document.querySelector('.text-container');
+      const imgContainer = document.querySelector('.img-container');
+    
       // creating elements
-      const section = document.createElement('section');
       const img = document.createElement('img');
-      const h1 = document.createElement('h1');
       const h2 = document.createElement('h2');
-      const p = document.createElement('p');
-      const span = document.createElement('span');
-
+      const h3 = document.createElement('h3');
+      const h4 = document.createElement('h4');
+      
       // populating elements
       img.setAttribute("src", picture);
-      h1.textContent = name;
-      h2.textContent = `${city}, ${country}`;
-      p.textContent = tagline;
-      span.textContent = `$${price}/day`;
-
-      // ordering elements
-      section.appendChild(img);
-      section.appendChild(h1);
-      section.appendChild(h2);
-      section.appendChild(p);
-      section.appendChild(span);
-
-      return section;
+      h2.textContent = name;
+      h3.textContent = `${city}, ${country}`;
+      h4.textContent = tagline;
+    
+      // appending elements to containers
+      textContainer.appendChild(h2);
+      textContainer.appendChild(h3);
+      textContainer.appendChild(h4);
+      imgContainer.appendChild(img);
     }
 
     return { getUserCardDOM, getPhotographerCard };
 };
 
+// Factory function to create media elements
 
+export const mediaFactory = (media) => {
+    const { title, image, videoSrc, likes, id } = media;
+
+    function getMediaElements() { 
+     // creating a container for media elements
+     const mediaElement = document.createElement('div');
+     mediaElement.classList.add('media-item');
+
+     // creating elements
+     const img = document.createElement('img');
+     const video = document.createElement('video');
+     const mediaTitle = document.createElement('h3');
+     const mediaLikes = document.createElement('p');
+
+     // populating elements
+     img.src = `assets/${image}`;
+     img.alt = title;
+     video.src = `assets/${videoSrc}`;
+     video.alt = title;
+     mediaTitle.textContent = title;
+     mediaLikes.textContent = `Likes: ${likes}`;
+
+     // appending elements to containers
+     mediaElement.appendChild(img);
+     mediaElement.appendChild(video);
+     mediaElement.appendChild(mediaTitle);
+     mediaElement.appendChild(mediaLikes);
+    }
+
+    return getMediaElements();
+};

@@ -28,5 +28,33 @@ async function displayPhotographerCard() {
     }
 }
 
-// Call the function to display the photographer card
+// calling the function to display the photographer card
 displayPhotographerCard();
+
+import {mediaFactory} from '../factories/photographer.js'
+
+async function getMediaElements(id) {
+    const response = await fetch('./data/photographers.json');
+    const data = await response.json();
+    return data.media.filter(media => media.photographerId === photographerId);
+}
+
+// Function to display photographer's media
+async function displayPhotographerMedia() {
+    const photographerId = extractPhotographerId(); // Function to extract photographer ID from URL
+    const mediaData = await getMediaElements(photographerId);
+
+    if (mediaData) {
+        const mediaContainer = document.querySelector('.media-content'); 
+
+        mediaData.forEach(mediaItem => {
+            const media = mediaFactory(mediaItem);
+            const mediaElement = media.getMediaElements(); // Call the method to get media elements
+
+            mediaContainer.appendChild(mediaElement);
+        });
+    }
+}
+
+// calling the function to display the photographer media
+displayPhotographerMedia();

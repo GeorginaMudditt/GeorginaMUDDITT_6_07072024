@@ -100,3 +100,61 @@ form textarea {
     font-size: 26px;
     font-family: DM Sans;
 }
+
+/* Added below by Georgina */
+
+.photograph-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
+
+.text-container {
+    padding: 50px;
+}
+
+.photograph-header button {
+    margin-top: 100px;
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.photograph-header h2 {
+    color: #bf5138;
+    font-size: 64px;
+    line-height: 83.33px;
+    margin:0;
+}
+    
+.photograph-header h3 {
+    color: #901c1c;
+    font-size: 24px;
+    line-height: 31.25px;
+    margin:0;
+}
+    
+.photograph-header h4 {
+    font-size: 18px;
+    line-height: 23.44px;
+    margin:0;
+    color: #525252;
+    padding-top: 10px;
+}
+
+.media-content {
+    border: 5px solid red;
+    margin: 0 100px;
+}
