@@ -63,8 +63,8 @@ export const photographerFactory = (data) => {
 
 // Factory function to create media elements
 
-export const mediaFactory = (media) => {
-    const { title, image, videoSrc, likes, id } = media;
+export const mediaFactory = async (media) => {
+    const { title, image, videoSrc, likes, photographerId } = media;
 
     function getMediaElements() { 
      // creating a container for media elements
