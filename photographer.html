@@ -12,7 +12,9 @@
 
   <body>
     <header>
+      <a href="./index.html">
       <img src="assets/images/logo.png" class="logo" />
+      </a>
     </header>
 
     <main id="main">
@@ -21,35 +23,38 @@
         <button class="contact_button" onclick="displayModal()">Contact me</button>
         <div class="img-container"></div>
       </div>
+    
+      <div id="contact_modal" role="dialog" aria-labelledby="contactFormLabel">
+        <div class="modal">
+          <header>
+            <h2 id="contactFormLabel">Contact me</h2>
+            <button onclick="closeModal()" aria-label="Close contact form">
+            <img src="assets/icons/close.svg" alt="Close" />
+            </button>
+          </header>
+          <form aria-label="Contact form">
+            <div>
+              <label for="firstName">First name</label>
+              <input id="firstName" name="firstName" type="text" placeholder="Jane"/>
+              <label for="lastName">Last name</label>
+              <input id="lastName" name="lastName" type="text" placeholder="Doe" />
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="jane.doe@email.com" />
+              <label for="yourMessage">Your message</label>
+              <textarea id="yourMessage" name="yourMessage" type="text" placeholder="I would like to ask ..."></textarea>
+            </div>
+            <button class="contact_button">Send</button>
+          </form>
+        </div>
+      </div>
+      <div class="media-content">
+      </div>
+      <div class="likes-box">
+      </div>
+      <script src="scripts/pages/photographer.js" type="module"></script>
+      <script src="scripts/utils/contactForm.js"></script>
+      <script src="scripts/factories/photographer.js" type="module"></script>
+      <script src="scripts/factories/media.js" type="module"></script>
     </main>
-    <div id="contact_modal" role="dialog" aria-labelledby="contactFormLabel">
-			<div class="modal">
-				<header>
-          <h2 id="contactFormLabel">Contact me</h2>
-          <button onclick="closeModal()" aria-label="Close contact form">
-          <img src="assets/icons/close.svg" alt="Close" />
-          </button>
-        </header>
-				<form aria-label="Contact form">
-					<div>
-						<label for="firstName">First name</label>
-						<input id="firstName" name="firstName" type="text" placeholder="Jane"/>
-            <label for="lastName">Last name</label>
-						<input id="lastName" name="lastName" type="text" placeholder="Doe" />
-            <label for="email">Email</label>
-						<input id="email" name="email" type="email" placeholder="jane.doe@email.com" />
-            <label for="yourMessage">Your message</label>
-						<textarea id="yourMessage" name="yourMessage" type="text" placeholder="I would like to ask ..."></textarea>
-					</div>
-          <button class="contact_button">Send</button>
-				</form>
-			</div>
-		</div>
-    <div class="media-content">
-    </div>
-    <script src="scripts/pages/photographer.js" type="module"></script>
-    <script src="scripts/utils/contactForm.js"></script>
-    <script src="scripts/factories/photographer.js" type="module"></script>
-    <script src="scripts/factories/media.js" type="module"></script>
   </body>
 </html>

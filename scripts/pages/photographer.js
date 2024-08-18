@@ -1,6 +1,6 @@
 // importing the necessary factory functions
 import {photographerFactory} from '../factories/photographer.js'
-import {mediaFactory} from '../factories/media.js'
+// import {mediaFactory} from '../factories/media.js'
 
 // extracting the photographers' IDs
 function extractPhotographerId() { 
@@ -23,7 +23,7 @@ async function getPhotographerData(id) {
 // displaying the photographers' data in the photograph-header section
 async function displayPhotographerCard() {
     const photographerId = extractPhotographerId();
-    const { photographer, media } = await getPhotographerData(photographerId);
+    const { photographer } = await getPhotographerData(photographerId);
 
     if (photographer) {
         const photographerInstance = photographerFactory(photographer);
@@ -119,3 +119,30 @@ if (photographerId) {
 } else {
     console.error('Photographer ID not found in the URL');
 }
+
+// LIKES
+
+// populating the likes-box
+
+function populateLikesBox() {
+    const likesBox = document.querySelector('.likes-box');
+
+    if (likesBox) {
+        const heartIcon = document.createElement('span');
+        heartIcon.classList.add('heart-icon');
+        heartIcon.textContent = '♥';
+
+        const perDayText = document.createElement('span');
+        perDayText.textContent = '$/per day';
+
+        likesBox.appendChild(heartIcon);
+        likesBox.appendChild(perDayText);
+    } else {
+        console.error('Likes box not found');
+    }  
+}
+
+// calling the function to create and append the likes box
+populateLikesBox();
+
+
