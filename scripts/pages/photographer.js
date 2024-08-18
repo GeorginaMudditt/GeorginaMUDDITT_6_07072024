@@ -34,77 +34,88 @@ async function displayPhotographerCard() {
     }
 }
 
-// MEDIA-CONTENT - BACK TO THIS SECTION SUNDAY
-
-// displaying media content
-function displayMediaContent(media) {
-    const mediaSection = document.querySelector('.media-content');
-    media.forEach(item => {
-        const mediaElement = createMediaElement(item);
-        mediaSection.appendChild(mediaElement);
-    });
-}
-
-// Example function to create a media element
-function createMediaElement(item) {
-    const mediaElement = document.createElement('div');
-    mediaElement.className = 'media-item';
-    // Add more elements and attributes to the mediaElement as needed
-    mediaElement.innerHTML = `
-        <img src="${item.image}" alt="${item.title}">
-        <p>${item.title}</p>
-    `;
-    return mediaElement;
-}
-
 // calling the function to display the photographer card
 displayPhotographerCard();
 
+// MEDIA-CONTENT
 
+// getting the photographer ID from the URL
+function getPhotographerIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return parseInt(urlParams.get('id'), 10);
+}
 
-async function getMediaData() {
+// fetching and displaying media content based on photographer ID
+async function displayMediaContentByPhotographerId(photographerId) {
     try {
         const response = await fetch('./data/photographers.json');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        return Array.isArray(data) ? data : [];
+        const media = data.media.filter(item => item.photographerId === photographerId);
+        displayMediaContent(media);
     } catch (error) {
-        console.error('Error fetching media:', error);
-        return [];
+        console.error('Error fetching media data:', error);
     }
 }
 
-// filtering media by photographerId
-function filterMediaByPhotographerId(media, photographerId) {
-    return media.filter(mediaItem => mediaItem.photographerId === photographerId);
-}
-
-// displaying the media elements
-
-async function displayMedia() {
-    const media = await getMediaData();
-    const photographerId = extractPhotographerId();
-    const filteredMedia = filterMediaByPhotographerId(media, parseInt(photographerId));
-    displayMediaContent(filteredMedia);
-
-    if (!mediaContent) {
-        console.error('No media content found');
-        return;
-    }
-
-    filteredMedia.forEach(mediaElement => {
-        const mediaCard = mediaFactory(mediaElement);
-        const mediaCardDOM = mediaCard.getMediaCard();
-        mediaContent.appendChild(mediaCardDOM);
+// displaying media content
+function displayMediaContent(media) {
+    const mediaSection = document.querySelector('.media-content');
+    mediaSection.innerHTML = ''; 
+    media.forEach(item => {
+        const mediaElement = createMediaElement(item);
+        mediaSection.appendChild(mediaElement);
     });
 }
 
-// calling the function to display the media elements
-displayMedia();
+// creating the media element (image or video)
+function createMediaElement(item) {
+    const mediaElement = document.createElement('div');
+    mediaElement.className = 'media-item';
 
-// // populating media content section
-    // if (media) {
-    //     displayMediaContent(media);
-    // }
+    if (item.image) {
+        mediaElement.innerHTML = `
+            <img src="assets/media/${item.image}" alt="${item.title}" data-title="${item.title}">
+            <div class="media-info">
+                <p>${item.title}</p>
+                <p>${item.likes} <span class="heart-icon">♥</span></p>
+            </div>
+        `;
+    } else if (item.video) {
+        mediaElement.innerHTML = `
+            <video controls>
+                <source src="assets/media/${item.video}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="media-info">
+                <p>${item.title}</p>
+                <p>${item.likes} <span class="heart-icon">♥</span></p>
+            </div>
+        `;
+    }
+
+    return mediaElement;
+}
+
+// Function to apply a specific class based on the image title
+function applyClassBasedOnTitle() {
+    const images = document.querySelectorAll('img[data-title]');
+    images.forEach(img => {
+        const title = img.getAttribute('data-title');
+        if (title === 'Fashion Yellow Beach' || title === 'Fashion Pattern on a Pattern' || title === 'Raw Black Portrait' || title === 'Jump!' || title === 'Fashion Wings' || title === 'Melody Red on Stripes' || title === 'Musical Festival Singer') {
+            img.classList.add('top-position');
+        }
+    });
+}
+
+// getting the photographer ID from the URL and display the media content
+const photographerId = getPhotographerIdFromUrl();
+if (photographerId) {
+    displayMediaContentByPhotographerId(photographerId).then(() => {
+        applyClassBasedOnTitle(); // Apply the class after the media content is rendered
+    });
+} else {
+    console.error('Photographer ID not found in the URL');
+}

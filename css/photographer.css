@@ -103,6 +103,8 @@ form textarea {
 
 /* Added below by Georgina */
 
+/* PHOTOGRAPH-HEADER SECTION */
+
 .photograph-header {
     display: flex;
     flex-direction: row;
@@ -154,7 +156,42 @@ form textarea {
     padding-top: 10px;
 }
 
+/* MEDIA-CONTENT SECTION */
+
 .media-content {
-    border: 5px solid red;
-    margin: 0 100px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px;
+    justify-content: space-between;
+}
+
+.media-item {
+    padding-bottom: 50px;
+}
+.media-item img, video {
+    margin: 0 10px;
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.top-position {
+    object-position: top;
+}
+
+.media-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+}
+
+.media-info p {
+    font-size: 24px;
+    font-weight: 400;
+    color: #901c1c;
+}
+
+.media-info p:first-child {
+    max-width: 80%;
 }
