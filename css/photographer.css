@@ -110,7 +110,27 @@ form textarea {
     font-family: DM Sans;
 }
 
-/* Added below by Georgina */
+#thankYouMessage {
+    width: 600px;
+    height: 600px;
+    background-color: #DB8876;
+    border-radius: 5%;
+    font-size: 64px;
+    font-family: DM Sans;
+    padding: 80px 40px;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    z-index: 2000;
+}
+
+.close-icon {
+    color: white;
+    position:absolute;
+    right: 80px;
+    top: 40px;
+    cursor: pointer;
+}
 
 /* PHOTOGRAPH-HEADER SECTION */
 
